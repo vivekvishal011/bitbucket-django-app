@@ -1,0 +1,49 @@
+#  Template python-build
+
+#  This template allows you to validate your python code.
+#  The workflow allows running tests and code linting on the default branch.
+
+#image: python:3.8
+
+pipelines:
+  branches: # Branch-specific pipeline definitions
+    master:
+      - step:
+          name: Build and test the app
+          image: python:3.8
+          script:
+            #- pip3 install virtualenv
+            #- then the dir you want yhen virtualenv vishalenv
+            #- source vishalenv/bin/activate
+            - pip install django
+            #- cd nitin
+            #- python ./manage.py startapp myapp
+            #- ls
+            #- python ./manage.py migrate
+            - python ./manage.py runserver &
+            
+            
+  custom: # Pipeline that only runs manually
+    production:
+      - step:
+          name: Building the app
+          image: python:3.8
+          script:
+            - pip install django
+            - python ./manage.py migrate
+            - python ./manage.py runserver &
+          artifacts:
+            - build/**
+      - step:
+          name: Deploying the app to S3
+          deployment: production
+          script:
+            - pipe: atlassian/aws-s3-deploy:0.2.4
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                S3_BUCKET: $S3_BUCKET
+                ACL: 'bucket-owner-full-control'
+                #ACL: 'public-read'
+                LOCAL_PATH: './'
