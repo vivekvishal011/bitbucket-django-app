@@ -296,6 +296,10 @@ Tests.py allows the user to write test code for their web applications. It is us
  ``FOR more detail read this article :---https://techvidvan.com/tutorials/django-project-structure-layout/``
  
  
+ `` I deploy  the aap on s3 but if you want you can deploy it on whatever server you want for example 
+ 
+ for aws-elastic-benstack :: see for more details::- https://www.youtube.com/watch?v=ic37xehTV5Y
+ 
  ## HAPPY BITBUCKETING!.....
  
 
