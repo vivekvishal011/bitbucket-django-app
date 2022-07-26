@@ -319,5 +319,3 @@ Tests.py allows the user to write test code for their web applications. It is us
 
 ---
 
-## Clone a repository
-
