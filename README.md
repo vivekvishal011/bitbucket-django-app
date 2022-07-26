@@ -1,1 +1,1 @@
-# bitbucket-django-react-app
+# bitbucket-django-app
